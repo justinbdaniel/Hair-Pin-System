@@ -1,0 +1,97 @@
+int ledR = 5;
+int ledG = 6;
+int ledR1= 10;
+int ledG1= 11;
+int ir = A0;
+int ir1= A1;
+int ir2= A2;
+
+
+
+
+void setup() 
+{
+  Serial.begin (9600);
+  
+  pinMode (ledR,OUTPUT);
+  pinMode (ledG,OUTPUT);
+  pinMode (ledR1,OUTPUT);
+  pinMode (ledG1,OUTPUT);
+  
+  pinMode (ir,INPUT);
+  pinMode (ir1,INPUT);
+  pinMode(ir2,INPUT);
+}
+void loop() 
+{   
+        if (!digitalRead(ir)&&!digitalRead(ir2)&&!digitalRead(ir1))       // IR 1 CODE    
+             
+             {
+                //digitalWrite(ledG,HIGH);
+                
+                analogWrite(ledG,LOW);
+                analogWrite(ledR,255);
+                analogWrite(ledG1,LOW);
+                analogWrite(ledR1,255); 
+                delay(1000);    
+                // micro second
+               } 
+           else if (!digitalRead(ir)&&!digitalRead(ir2)&&digitalRead(ir1))  
+                {
+                  //digitalWrite(led,HIGH);
+                  analogWrite(ledG,255);
+                  analogWrite(ledR1,255);                  
+                  analogWrite(ledR,LOW);
+                  analogWrite(ledG1,LOW);
+                  delay(1000);
+                  
+                }
+                
+            else if (!digitalRead(ir)&&digitalRead(ir2)&&!digitalRead(ir1)) 
+             {
+               
+                
+                analogWrite(ledG1,LOW);
+                analogWrite(ledR1,255);
+                analogWrite(ledG,255);
+                analogWrite(ledR,LOW);       
+                // micro second
+               } 
+            else if (!digitalRead(ir)&&digitalRead(ir2)&&digitalRead(ir1))
+                {
+                  //digitalWrite(led,HIGH);
+                analogWrite(ledG1,LOW);
+                analogWrite(ledR1,255);
+                analogWrite(ledG,255);
+                analogWrite(ledR,LOW);
+                delay(1000);   
+                }
+                 
+               
+           else  if (digitalRead(ir)&&!digitalRead(ir2)&&!digitalRead(ir1))
+                 {
+                  analogWrite(ledG,LOW);
+                  analogWrite(ledR,255);
+                  analogWrite(ledG1,255);
+                  analogWrite(ledR1,LOW);
+                  delay(1000);  
+             }
+   
+            else if (digitalRead(ir)&&digitalRead(ir2)&&!digitalRead(ir1))
+             {    analogWrite(ledG,LOW);
+                  analogWrite(ledR,255);
+                  analogWrite(ledG1,255);
+                  analogWrite(ledR1,LOW);  
+   
+             }
+             else{ analogWrite(ledG,LOW);
+                  analogWrite(ledR,LOW);
+                  analogWrite(ledG1,LOW);
+                  analogWrite(ledR1,LOW); 
+                  delay(1000);
+              
+              
+              }
+   
+   delay(500);
+}
